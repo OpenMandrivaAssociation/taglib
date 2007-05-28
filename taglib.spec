@@ -20,6 +20,7 @@ URL: 		http://ktown.kde.org/~wheeler/taglib/
 Requires: 	%{libname} = %{version}-%release
 Conflicts:	taglib <= 0.96-1mdk
 Patch1:		taglib-1.4-fix-mem-leak.patch
+Patch2:         taglib-1.4-fix-rw.patch
 
 BuildRequires:	multiarch-utils >= 1.0.3
 
@@ -64,6 +65,7 @@ library.
 %prep
 %setup -q
 %patch1 -p1 -b .fix_mem_leak
+%patch2 -p0
 
 %build
 %configure2_5x
