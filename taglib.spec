@@ -15,6 +15,7 @@ Release: %mkrel 3
 License: 	GPL
 Group: 		File tools
 Source:		%name-%version.tar.bz2
+BuildRoot: 	%{_tmppath}/%{name}-%{version}-buildroot
 URL: 		http://ktown.kde.org/~wheeler/taglib/
 Requires: 	%{libname} = %{version}-%release
 Conflicts:	taglib <= 0.96-1mdk
