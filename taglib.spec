@@ -6,7 +6,7 @@
 
 Name: taglib
 Version: 1.5
-Release: %mkrel 0.rc1.1
+Release: %mkrel 0.rc1.2
 Summary: TagLib, is well, a library for reading and editing audio meta data
 License: GPL
 Group: File tools
@@ -39,6 +39,7 @@ Group:		System/Libraries
 Summary:	TagLib, is well, a library for reading and editing audio meta data
 Conflicts:  taglib <= 0.96-1mdk
 Obsoletes: %{libold} < 1.5.0
+Obsoletes: taglib < 1.5.0
 
 %description	-n %{libnametag}
 Library for taglib
@@ -58,6 +59,7 @@ Group: System/Libraries
 Summary: TagLib, is well, a library for reading and editing audio meta data
 Conflicts: taglib <= 0.96-1mdk
 Conflicts: %{libold} < 1.5.0
+Obsoletes: taglib < 1.5.0
 
 %description	-n %{libnametagc}
 TagLib, is well, a library for reading and editing audio meta data.
