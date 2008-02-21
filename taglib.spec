@@ -6,11 +6,11 @@
 
 Name: taglib
 Version: 1.5
-Release: %mkrel 0.rc1.2
+Release: %mkrel 1
 Summary: Library for reading and editing audio meta data
 License: GPL
 Group: File tools
-Source: %name-%{version}rc1.tar.gz
+Source: %name-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 URL: http://ktown.kde.org/~wheeler/taglib/
 Conflicts:	taglib <= 0.96-1mdk
@@ -98,7 +98,7 @@ using the libtag library.
 #---------------------------------------------------------------------
 
 %prep
-%setup -q -n %name-%{version}rc1
+%setup -q 
 
 %build
 %configure2_5x
