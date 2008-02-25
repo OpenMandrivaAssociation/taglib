@@ -1,19 +1,24 @@
-%define libnametag	%mklibname %{name} 1
-%define libnametagc	%mklibname %{name}_c 0
-%define libdev %mklibname %{name} -d
+%define major 1
+%define minor 0
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
+%define libnametagc %mklibname %{name}_c %{minor}
 %define libold %mklibname %{name} 0
 %define libolddev %mklibname %{name} 0 -d
 
-Name: taglib
-Version: 1.5
-Release: %mkrel 1
-Summary: Library for reading and editing audio meta data
-License: GPL
-Group: File tools
-Source: %name-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
-URL: http://ktown.kde.org/~wheeler/taglib/
+Summary:	Library for reading and editing audio meta data
+Name:		taglib
+Version:	1.5
+Release:	%mkrel 1
+License:	LGPLv2+
+Group:		File tools
+URL:		http://developer.kde.org/~wheeler/taglib.html
+Source:		http://developer.kde.org/~wheeler/files/src/%{name}-%{version}.tar.bz2
+#(tpg) http://foetida.jaist.ac.jp:37565/~yaz/diary/2006/07/taglib-1.4_wchar.diff
+Patch0:		taglib-1.4_wchar.diff
 Conflicts:	taglib <= 0.96-1mdk
+BuildRequires:	zlib-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 TagLib, is well, a library for reading and editing audio meta data, 
@@ -34,32 +39,32 @@ it a semi-sane STL implementation.
 
 #---------------------------------------------------------------------
 
-%package	-n %{libnametag}
+%package -n %{libname}
 Group:		System/Libraries
 Summary:	Library for reading and editing audio meta data
-Conflicts:  taglib <= 0.96-1mdk
-Obsoletes: %{libold} < 1.5.0
-Obsoletes: taglib < 1.5.0
+Conflicts:	taglib <= 0.96-1mdk
+Obsoletes:	%{libold} < 1.5.0
+Obsoletes:	taglib < 1.5.0
 
-%description	-n %{libnametag}
-Library for taglib
+%description -n %{libname}
+Main taglib library.
 
-%post -n %{libnametag} -p /sbin/ldconfig
-%postun -n %{libnametag} -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
-%files -n %{libnametag}
+%files -n %{libname}
 %defattr(-,root,root)
-%_libdir/libtag.la
-%_libdir/libtag.so.*
+%{_libdir}/libtag.la
+%{_libdir}/libtag.so.%{major}*
 
 #---------------------------------------------------------------------
 
-%package	-n %{libnametagc}
-Group: System/Libraries
-Summary: Library for reading and editing audio meta data
-Conflicts: taglib <= 0.96-1mdk
-Conflicts: %{libold} < 1.5.0
-Obsoletes: taglib < 1.5.0
+%package -n %{libnametagc}
+Group:		System/Libraries
+Summary:	A C bindings for taglib library
+Conflicts:	taglib <= 0.96-1mdk
+Conflicts:	%{libold} < 1.5.0
+Obsoletes:	taglib < 1.5.0
 
 %description	-n %{libnametagc}
 TagLib, is well, a library for reading and editing audio meta data.
@@ -69,36 +74,39 @@ TagLib, is well, a library for reading and editing audio meta data.
 
 %files -n %{libnametagc}
 %defattr(-,root,root)
-%_libdir/libtag_c.la
-%_libdir/libtag_c.so.*
+%{_libdir}/libtag_c.la
+%{_libdir}/libtag_c.so.%{minor}*
 
 #---------------------------------------------------------------------
 
-%package -n %{libdev}
-Group: Development/C
-Summary: Headers and static lib for taglib development
-Requires: %{libnametag} = %version-%release
-Requires: %{libnametagc} = %version-%release
-Provides: %{name}-devel = %{version}-%{release}
-Conflicts: taglib <= 0.96-1mdk
-Obsoletes: %{libolddev}
+%package -n %{develname}
+Group:		Development/C
+Summary:	Headers and static lib for taglib development
+Requires:	%{libname} = %{version}-%{release}
+Requires:	%{libnametagc} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
+Provides:	lib%{name}-devel = %{version}-%{release}
+Conflicts:	taglib <= 0.96-1mdk
+Obsoletes:	%{libolddev}
 
-%description -n %{libdev}
+%description -n %{develname}
 Install this package if you want do compile applications i
 using the libtag library.
 
-%files -n %{libdev}
+%files -n %{develname}
 %defattr(-,root,root)
-%_bindir/taglib-config
-%_libdir/*.so
-%_libdir/pkgconfig/*
-%_includedir/*
+%doc AUTHORS
+%{_bindir}/taglib-config
+%{_libdir}/*.so
+%{_libdir}/pkgconfig/*
+%{_includedir}/*
 %multiarch %{multiarch_bindir}/taglib-config
 
 #---------------------------------------------------------------------
 
 %prep
 %setup -q 
+%patch0 -p1
 
 %build
 %configure2_5x
@@ -106,12 +114,10 @@ using the libtag library.
 %make
 
 %install
-rm -rf %buildroot
+rm -rf %{buildroot}
 %makeinstall_std
 
-%multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/taglib-config
+%multiarch_binaries %{buildroot}%{_bindir}/taglib-config
 
 %clean
-rm -rf %buildroot
-
-
+rm -rf %{buildroot}
