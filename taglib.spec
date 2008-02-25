@@ -18,6 +18,7 @@ Source:		http://developer.kde.org/~wheeler/files/src/%{name}-%{version}.tar.bz2
 Patch0:		taglib-1.4_wchar.diff
 Conflicts:	taglib <= 0.96-1mdk
 BuildRequires:	zlib-devel
+BuildRequires:	cppunit-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -109,9 +110,15 @@ using the libtag library.
 %patch0 -p1
 
 %build
+#(tpg) taglib have to be linked against -ldl, otherwise check fails
+export LDFLAGS="%{optflags} -ldl"
+
 %configure2_5x
 
 %make
+
+%check
+make check
 
 %install
 rm -rf %{buildroot}
