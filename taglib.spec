@@ -50,8 +50,12 @@ Obsoletes:	taglib < 1.5.0
 %description -n %{libname}
 Main taglib library.
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 %files -n %{libname}
 %defattr(-,root,root)
@@ -70,8 +74,12 @@ Obsoletes:	taglib < 1.5.0
 %description	-n %{libnametagc}
 TagLib, is well, a library for reading and editing audio meta data.
 
+%if %mdkversion < 200900
 %post -n %{libnametagc} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{libnametagc} -p /sbin/ldconfig
+%endif
 
 %files -n %{libnametagc}
 %defattr(-,root,root)
