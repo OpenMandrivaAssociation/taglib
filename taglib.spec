@@ -8,16 +8,14 @@
 
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
-Version:	1.5
-Release:	%mkrel 6
+Version:	1.6
+Release:	%mkrel 1
 License:	LGPLv2+
 Group:		File tools
 URL:		http://developer.kde.org/~wheeler/taglib.html
-Source:		http://developer.kde.org/~wheeler/files/src/%{name}-%{version}.tar.bz2
+Source:		http://ftp.musicbrainz.org/pub/musicbrainz/users/luks/taglib//%{name}-%{version}.tar.gz
 #(tpg) http://foetida.jaist.ac.jp:37565/~yaz/diary/2006/07/taglib-1.4_wchar.diff
 Patch0:		taglib-1.4_wchar.diff
-#(eandry) http://mirror.espri.arizona.edu/gentoo/rsync/media-libs/taglib/files/
-Patch1:		taglib-1.5-gcc43-tests.patch
 Conflicts:	taglib <= 0.96-1mdk
 BuildRequires:	zlib-devel
 BuildRequires:	cppunit-devel
@@ -118,7 +116,6 @@ using the libtag library.
 %prep
 %setup -q 
 %patch0 -p1
-%patch1 -p0
 
 %build
 #(tpg) taglib have to be linked against -ldl, otherwise check fails
