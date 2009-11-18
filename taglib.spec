@@ -50,16 +50,9 @@ Obsoletes:	taglib < 1.5.0
 %description -n %{libname}
 Main taglib library.
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/libtag.la
 %{_libdir}/libtag.so.%{major}*
 
 #---------------------------------------------------------------------
@@ -74,16 +67,8 @@ Obsoletes:	taglib < 1.5.0
 %description	-n %{libnametagc}
 TagLib, is well, a library for reading and editing audio meta data.
 
-%if %mdkversion < 200900
-%post -n %{libnametagc} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libnametagc} -p /sbin/ldconfig
-%endif
-
 %files -n %{libnametagc}
 %defattr(-,root,root)
-%{_libdir}/libtag_c.la
 %{_libdir}/libtag_c.so.%{minor}*
 
 #---------------------------------------------------------------------
@@ -104,7 +89,6 @@ using the libtag library.
 
 %files -n %{develname}
 %defattr(-,root,root)
-%doc AUTHORS
 %{_bindir}/taglib-config
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
@@ -121,15 +105,13 @@ using the libtag library.
 #(tpg) taglib have to be linked against -ldl, otherwise check fails
 export LDFLAGS="%{optflags} -ldl"
 
-%configure2_5x --enable-asf --enable-mp4
+%cmake_kde4 -DWITH_ASF=ON -DWITH_MP4=ON
 
 %make
 
-%check
-make check
-
 %install
 rm -rf %{buildroot}
+cd build
 %makeinstall_std
 
 %multiarch_binaries %{buildroot}%{_bindir}/taglib-config
