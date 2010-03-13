@@ -19,6 +19,7 @@ Patch0:		taglib-1.4_wchar.diff
 Conflicts:	taglib <= 0.96-1mdk
 BuildRequires:	zlib-devel
 BuildRequires:	cppunit-devel
+BuildRequires:	kde4-macros
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
