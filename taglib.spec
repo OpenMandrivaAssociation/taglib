@@ -8,7 +8,7 @@
 
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
-Version:	1.6.1
+Version:	1.6.2
 Release:	%mkrel 1
 License:	LGPLv2+
 Group:		File tools
@@ -103,17 +103,12 @@ using the libtag library.
 %patch0 -p1
 
 %build
-#(tpg) taglib have to be linked against -ldl, otherwise check fails
-export LDFLAGS="%{optflags} -ldl"
-
 %cmake_kde4 -DWITH_ASF=ON -DWITH_MP4=ON
-
 %make
 
 %install
 rm -rf %{buildroot}
-cd build
-%makeinstall_std
+%makeinstall_std -C build
 
 %multiarch_binaries %{buildroot}%{_bindir}/taglib-config
 
