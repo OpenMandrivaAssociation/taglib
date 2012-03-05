@@ -8,8 +8,8 @@
 
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
-Version:	1.6.3
-Release:	%mkrel 2
+Version:	1.7
+Release:	1
 License:	LGPLv2+
 Group:		File tools
 URL:		http://developer.kde.org/~wheeler/taglib.html
@@ -20,7 +20,6 @@ Conflicts:	taglib <= 0.96-1mdk
 BuildRequires:	zlib-devel
 BuildRequires:	cppunit-devel
 BuildRequires:	kde4-macros
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 TagLib, is well, a library for reading and editing audio meta data, 
