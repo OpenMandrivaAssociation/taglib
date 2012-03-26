@@ -8,12 +8,12 @@
 
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
-Version:	1.7
+Version:	1.7.1
 Release:	1
 License:	LGPLv2+
 Group:		File tools
 URL:		http://developer.kde.org/~wheeler/taglib.html
-Source:		http://developer.kde.org/~wheeler/files/src/%{name}-%{version}.tar.gz
+Source0:	http://developer.kde.org/~wheeler/files/src/%{name}-%{version}.tar.gz
 #(tpg) http://foetida.jaist.ac.jp:37565/~yaz/diary/2006/07/taglib-1.4_wchar.diff
 Patch0:		taglib-1.4_wchar.diff
 Conflicts:	taglib <= 0.96-1mdk
@@ -52,7 +52,6 @@ Main taglib library.
 
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/libtag.so.%{major}*
 
 #---------------------------------------------------------------------
@@ -68,7 +67,6 @@ Obsoletes:	taglib < 1.5.0
 TagLib, is well, a library for reading and editing audio meta data.
 
 %files -n %{libnametagc}
-%defattr(-,root,root)
 %{_libdir}/libtag_c.so.%{minor}*
 
 #---------------------------------------------------------------------
@@ -88,7 +86,6 @@ Install this package if you want do compile applications i
 using the libtag library.
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_bindir}/taglib-config
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
@@ -106,10 +103,7 @@ using the libtag library.
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std -C build
 
 %multiarch_binaries %{buildroot}%{_bindir}/taglib-config
 
-%clean
-rm -rf %{buildroot}
