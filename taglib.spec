@@ -3,12 +3,10 @@
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 %define libnametagc %mklibname %{name}_c %{minor}
-%define libold %mklibname %{name} 0
-%define libolddev %mklibname %{name} 0 -d
 
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
-Version:	1.7.1
+Version:	1.7.2
 Release:	1
 License:	LGPLv2+
 Group:		File tools
@@ -16,7 +14,6 @@ URL:		http://developer.kde.org/~wheeler/taglib.html
 Source0:	http://developer.kde.org/~wheeler/files/src/%{name}-%{version}.tar.gz
 #(tpg) http://foetida.jaist.ac.jp:37565/~yaz/diary/2006/07/taglib-1.4_wchar.diff
 Patch0:		taglib-1.4_wchar.diff
-Conflicts:	taglib <= 0.96-1mdk
 BuildRequires:	zlib-devel
 BuildRequires:	cppunit-devel
 BuildRequires:	kde4-macros
@@ -43,9 +40,6 @@ it a semi-sane STL implementation.
 %package -n %{libname}
 Group:		System/Libraries
 Summary:	Library for reading and editing audio meta data
-Conflicts:	taglib <= 0.96-1mdk
-Obsoletes:	%{libold} < 1.5.0
-Obsoletes:	taglib < 1.5.0
 
 %description -n %{libname}
 Main taglib library.
@@ -59,9 +53,6 @@ Main taglib library.
 %package -n %{libnametagc}
 Group:		System/Libraries
 Summary:	A C bindings for taglib library
-Conflicts:	taglib <= 0.96-1mdk
-Conflicts:	%{libold} < 1.5.0
-Obsoletes:	taglib < 1.5.0
 
 %description	-n %{libnametagc}
 TagLib, is well, a library for reading and editing audio meta data.
@@ -78,8 +69,6 @@ Requires:	%{libname} = %{version}-%{release}
 Requires:	%{libnametagc} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
-Conflicts:	taglib <= 0.96-1mdk
-Obsoletes:	%{libolddev}
 
 %description -n %{develname}
 Install this package if you want do compile applications i
@@ -95,7 +84,7 @@ using the libtag library.
 #---------------------------------------------------------------------
 
 %prep
-%setup -q 
+%setup -q
 %patch0 -p1
 
 %build
