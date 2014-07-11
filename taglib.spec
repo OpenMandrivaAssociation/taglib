@@ -7,7 +7,7 @@
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
 Version:	1.9.1
-Release:	2
+Release:	3
 License:	LGPLv2+
 Group:		File tools
 Url:		http://developer.kde.org/~wheeler/taglib.html
