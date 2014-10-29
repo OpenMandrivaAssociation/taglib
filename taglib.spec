@@ -3,11 +3,12 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
 %define libnametagc %mklibname %{name}_c %{minor}
+%define debug_package %{nil}
 
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
 Version:	1.9.1
-Release:	4
+Release:	5
 License:	LGPLv2+
 Group:		File tools
 Url:		http://developer.kde.org/~wheeler/taglib.html
@@ -89,6 +90,8 @@ using the libtag library.
 %patch1 -p1 -b .rusxmms~
 
 %build
+export CC=gcc
+export CXX=g++
 %cmake_kde4 -DWITH_ASF=ON -DWITH_MP4=ON
 %make
 
