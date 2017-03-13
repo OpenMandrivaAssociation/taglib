@@ -11,7 +11,7 @@ Version:	1.11
 Release:	1
 License:	LGPLv2+
 Group:		File tools
-Url:		http://developer.kde.org/~wheeler/taglib.html
+Url:		http://www.taglib.org
 Source0:	http://taglib.github.io/releases/%{name}-%{version}.tar.gz
 #Patch1:		https://raw.github.com/RussianFedora/taglib/master/taglib-1.9.1-ds-rusxmms-r9.patch
 BuildRequires:	kde4-macros
