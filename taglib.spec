@@ -8,12 +8,12 @@
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
 Version:	1.11.1
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		File tools
 Url:		http://www.taglib.org
 Source0:	http://taglib.github.io/releases/%{name}-%{version}.tar.gz
-#Patch1:		https://raw.github.com/RussianFedora/taglib/master/taglib-1.9.1-ds-rusxmms-r9.patch
+#Patch1:	https://raw.github.com/RussianFedora/taglib/master/taglib-1.9.1-ds-rusxmms-r9.patch
 BuildRequires:	kde4-macros
 BuildRequires:	librcc-devel
 BuildRequires:	pkgconfig(zlib)
@@ -81,7 +81,6 @@ using the libtag library.
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
-%{multiarch_bindir}/taglib-config
 
 #---------------------------------------------------------------------
 
@@ -90,13 +89,8 @@ using the libtag library.
 %patch1 -p1 -b .rusxmms~
 
 %build
-export CC=gcc
-export CXX=g++
 %cmake_kde4 -DWITH_ASF=ON -DWITH_MP4=ON
 %make
 
 %install
 %makeinstall_std -C build
-
-%multiarch_binaries %{buildroot}%{_bindir}/taglib-config
-
