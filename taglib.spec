@@ -8,7 +8,7 @@
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
 Version:	1.11.1
-Release:	4
+Release:	5
 License:	LGPLv2+
 Group:		File tools
 Url:		http://www.taglib.org
