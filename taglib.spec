@@ -93,11 +93,8 @@ using the libtag library.
 %autosetup -p1
 
 %build
-%cmake -DWITH_ASF=ON -DWITH_MP4=ON -G Ninja
+%cmake -DEXEC_INSTALL_PREFIX="%{_prefix}" -DLIB_INSTALL_DIR="%{_libdir}" -DWITH_ASF=ON -DWITH_MP4=ON -G Ninja
 %ninja
 
 %install
 %ninja_install -C build
-
-# (tpg) fix bogus pc files
-sed -i -e 's#^libdir=lib.*#libdir=%{_libdir}#g' -e 's/\-Llib64|\-Llib/-L${libdir}/g' %{buildroot}%{_libdir}/pkgconfig/*.pc
