@@ -8,7 +8,7 @@
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
 Version:	1.11.1
-Release:	6
+Release:	7
 License:	LGPLv2+
 Group:		File tools
 Url:		http://www.taglib.org
@@ -98,3 +98,6 @@ using the libtag library.
 
 %install
 %ninja_install -C build
+
+# (tpg) fix bogus pc files
+sed -i -e 's/^libdir=lib.*/libdir=%{_libdir}/g' -e 's/\-Llib64|\-Llib/g' %{_libdir}/pkgconfig/*.pc
