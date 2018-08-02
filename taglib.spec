@@ -100,4 +100,4 @@ using the libtag library.
 %ninja_install -C build
 
 # (tpg) fix bogus pc files
-sed -i -e 's/^libdir=lib.*/libdir=%{_libdir}/g' -e 's/\-Llib64|\-Llib/-L${libdir}/g' %{buildroot}%{_libdir}/pkgconfig/*.pc
+sed -i -e 's#^libdir=lib.*#libdir=%{_libdir}#g' -e 's/\-Llib64|\-Llib/-L${libdir}/g' %{buildroot}%{_libdir}/pkgconfig/*.pc
