@@ -8,13 +8,19 @@
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
 Version:	1.11.1
-Release:	5
+Release:	6
 License:	LGPLv2+
 Group:		File tools
 Url:		http://www.taglib.org
 Source0:	http://taglib.github.io/releases/%{name}-%{version}.tar.gz
-#Patch1:	https://raw.github.com/RussianFedora/taglib/master/taglib-1.9.1-ds-rusxmms-r9.patch
-BuildRequires:	cmake ninja
+# (tpg) fix broken pc files
+Patch0:	taglib-1.5rc1-multilib.patch
+## upstream patches
+# sbooth fork/pull-request
+# https://github.com/taglib/taglib/pull/831/commits/eb9ded1206f18f2c319157337edea2533a40bea6
+Patch1:	0001-Don-t-assume-TDRC-is-an-instance-of-TextIdentificati.patch
+BuildRequires:	cmake
+BuildRequires:	ninja
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(cppunit)
 
@@ -84,7 +90,7 @@ using the libtag library.
 #---------------------------------------------------------------------
 
 %prep
-%autosetup
+%autosetup -p1
 
 %build
 %cmake -DWITH_ASF=ON -DWITH_MP4=ON -G Ninja
