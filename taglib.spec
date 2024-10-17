@@ -10,7 +10,7 @@ Version:	1.12
 Release:	2
 License:	LGPLv2+
 Group:		File tools
-Url:		http://www.taglib.org
+Url:		https://www.taglib.org
 Source0:	http://taglib.github.io/releases/%{name}-%{version}.tar.gz
 # (tpg) fix broken pc files
 Patch0:	taglib-1.5rc1-multilib.patch
