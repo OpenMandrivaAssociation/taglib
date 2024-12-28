@@ -1,5 +1,5 @@
 %define major 2
-%define minor 0
+%define minor 2
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname %{name} -d
 %define libnametagc %mklibname %{name}_c %{minor}
