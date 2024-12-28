@@ -17,6 +17,7 @@ Source0:	http://taglib.github.io/releases/%{name}-%{version}.tar.gz
 ## upstream patches
 BuildRequires:	cmake
 BuildRequires:	ninja
+BuildRequires:  cmake(utf8cpp)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(cppunit)
 
