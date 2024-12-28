@@ -82,6 +82,7 @@ using the libtag library.
 %{_bindir}/taglib-config
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
+%{_libdir}/cmake/taglib/
 %{_includedir}/*
 
 #---------------------------------------------------------------------
