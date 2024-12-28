@@ -13,7 +13,7 @@ Group:		File tools
 Url:		https://www.taglib.org
 Source0:	http://taglib.github.io/releases/%{name}-%{version}.tar.gz
 # (tpg) fix broken pc files
-Patch0:	taglib-1.5rc1-multilib.patch
+#Patch0:	taglib-1.5rc1-multilib.patch
 ## upstream patches
 BuildRequires:	cmake
 BuildRequires:	ninja
