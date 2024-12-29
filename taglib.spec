@@ -1,8 +1,11 @@
 %define major 2
 %define minor 2
-%define libname %mklibname %{name} %{major}
-%define devname %mklibname %{name} -d
-%define libnametagc %mklibname %{name}_c %{minor}
+%define oldlibname %mklibname %{name} 1
+%define olddevname %mklibname %{name} -d
+%define oldlibnametagc %mklibname %{name}_c 1
+%define libname %mklibname tag
+%define devname %mklibname tag -d
+%define libnametagc %mklibname tag_c
 
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
@@ -45,6 +48,8 @@ it a semi-sane STL implementation.
 %package -n %{libname}
 Group:		System/Libraries
 Summary:	Library for reading and editing audio meta data
+# Renamed before 6.0 2024-12-29
+%rename %{oldlibname}
 
 %description -n %{libname}
 Main taglib library.
@@ -57,6 +62,8 @@ Main taglib library.
 %package -n %{libnametagc}
 Group:		System/Libraries
 Summary:	A C bindings for taglib library
+# Renamed before 6.0 2024-12-29
+%rename %{oldlibnametagc}
 
 %description -n %{libnametagc}
 TagLib, is well, a library for reading and editing audio meta data.
@@ -73,6 +80,8 @@ Requires:	%{libname} = %{EVRD}
 Requires:	%{libnametagc} = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
 Provides:	lib%{name}-devel = %{EVRD}
+# Renamed before 6.0 2024-12-29
+%rename %{olddevname}
 
 %description -n %{devname}
 Install this package if you want do compile applications
@@ -90,9 +99,11 @@ using the libtag library.
 %prep
 %autosetup -p1
 
-%build
+%conf
 %cmake -DEXEC_INSTALL_PREFIX="%{_prefix}" -DLIB_INSTALL_DIR="%{_libdir}" -DWITH_ASF=ON -DWITH_MP4=ON -G Ninja
-%ninja
+
+%build
+%ninja_build -C build
 
 %install
 %ninja_install -C build
