@@ -2,7 +2,7 @@
 %define minor 2
 %define oldlibname %mklibname %{name} 1
 %define olddevname %mklibname %{name} -d
-%define oldlibnametagc %mklibname %{name}_c 1
+%define oldlibnametagc %mklibname %{name}_c 0
 %define libname %mklibname tag
 %define devname %mklibname tag -d
 %define libnametagc %mklibname tag_c
@@ -10,7 +10,7 @@
 Summary:	Library for reading and editing audio meta data
 Name:		taglib
 Version:	2.0.2
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		File tools
 Url:		https://www.taglib.org
